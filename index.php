@@ -20,9 +20,9 @@
 
   <div class="column left">
     <div class="topnav">
-        <a href="index.html">Re-read</a>
-        <a href="view/libros.html">Libros</a>
-        <a href="view/eBooks.html">eBooks</a>
+        <a href="index.php">Re-read</a>
+        <a href="view/libros.php">Libros</a>
+        <a href="view/eBooks.php">eBooks</a>
       </div>
       
       <h3>Nunca la lectura ha sido tan necesaria</h3>

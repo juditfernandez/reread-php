@@ -20,9 +20,9 @@
 
   <div class="column left">
     <div class="topnav">
-        <a href="../index.html">Re-read</a>
-        <a href="libros.html">Libros</a>
-        <a href="eBooks.html">eBooks</a>
+        <a href="../index.php">Re-read</a>
+        <a href="libros.php">Libros</a>
+        <a href="eBooks.php">eBooks</a>
       </div>
       
     <h3>Todos los libros tienen el mismo precio</h3>
