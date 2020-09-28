@@ -33,14 +33,19 @@
 
     //2.Selecion y muestra de datos de la base de datos
     $result = mysqli_query($conn, "SELECT Books.Description, Books.img, Books.Title FROM Books");
-
+    $i=0;
     if (!empty($result) && mysqli_num_rows($result) > 0) {
+      $i++;
      while ($row = mysqli_fetch_array($result)) {
       echo "<div class= 'ebook'>";
 
       echo "<img src=../img/".$row['img']." alt='".$row['Title']."'>";
 
+      echo "<div class= 'desc'>".$row['Description']."</div>";
       echo "</div>";
+      if ($i%3==0) {
+        echo "<div style='clear:both;'></div>";
+      }
     }
   }else{
     echo " 0 resultados";
@@ -51,13 +56,6 @@
       <a href="https://www.wattpad.com/story/148876302-los-cuervos-rojos"><img src="../img/ebook_1.jpg" alt="ebook 1">
       <div>Los Cuervos Rojos</div></a>
   </div>
-    
-
-    <div class="ebook">
-      <a href="https://play.google.com/store/books/details/Steven_Erikson_El_Dios_Tullido_Malaz_X?id=CzDwDwAAQBAJ&hl=es"><img src="../img/ebook_2.jpg" alt="ebook 2">
-      <div>El Dios Tullido</div></a>
-    </div>
-
     <div class="ebook">
       <a href="https://play.google.com/store/books/details/Stephen_King_La_sangre_manda?id=l2XlDwAAQBAJ&hl=es"><img src="../img/ebook_3.jpg" alt="ebook 3">
       <div>La Sangre Manda</div></a>
