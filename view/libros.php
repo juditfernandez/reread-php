@@ -20,9 +20,11 @@
 
   <div class="column left">
     <div class="topnav">
+
         <a href="../index.php">Re-read</a>
         <a href="libros.php">Libros</a>
         <a href="eBooks.php">eBooks</a>
+
       </div>
       
     <h3>Todos los libros tienen el mismo precio</h3>
@@ -43,7 +45,7 @@
     <h3>¿Te cambias de piso? ¿Tienes que vaciar la casa? ¿O sencillamente necesitas algo más de espacio?</h3>
     <p>En Re-Read compramos tus libros para darles una segunda vida. Los compramos todos al mismo precio: 0,20 euros. Siempre hay libros leídos y libros por leer. Por eso Re-compramos y Re-vendemos para que nunca te quedes sin ninguno de los dos.</p>
   </div>
-  
+ 
   <?php
   include '../Service/connection.php';
     $result = mysqli_query($conn, "SELECT Books.Title FROM Books WHERE Top = 1");
