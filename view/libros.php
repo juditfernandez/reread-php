@@ -20,9 +20,12 @@
 
   <div class="column left">
     <div class="topnav">
-        <a href="../index.html">Re-read</a>
-        <a href="libros.html">Libros</a>
-        <a href="eBooks.html">eBooks</a>
+
+
+        <a href="../index.php">Re-read</a>
+        <a href="libros.php">Libros</a>
+        <a href="eBooks.php">eBooks</a>
+
       </div>
       
     <h3>Todos los libros tienen el mismo precio</h3>
@@ -43,14 +46,22 @@
     <h3>¿Te cambias de piso? ¿Tienes que vaciar la casa? ¿O sencillamente necesitas algo más de espacio?</h3>
     <p>En Re-Read compramos tus libros para darles una segunda vida. Los compramos todos al mismo precio: 0,20 euros. Siempre hay libros leídos y libros por leer. Por eso Re-compramos y Re-vendemos para que nunca te quedes sin ninguno de los dos.</p>
   </div>
+ 
+  <?php
+  include '../Service/connection.php';
+    $result = mysqli_query($conn, "SELECT Books.Title FROM Books WHERE Top = 1");
+  if (!empty($result) && mysqli_num_rows($result) > 0) {
+      echo "<h2>Top Ventas</h2>";
+      while ($row = mysqli_fetch_array($result)) {
+       echo "<div class= 'column right'>";
+       echo "<p>" .$row['Title']."</p>";
+       echo "</div>";
+     }
+   }else{
+    echo " 0 resultados";
+  }
+  ?>
   
-  <div class="column right">
-    <h2>Side</h2>
-    <p>cien años de soledad.</p>
-    <p>Cronica de una muerte anunciada</p>
-    <p>El otoño del patriarca</p>
-    <p>El general en su laberinto</p>
-  </div>
 </div>
   
 </body>
