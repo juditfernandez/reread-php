@@ -29,6 +29,33 @@
       
     <h3>Toda la actualidad en eBook</h3>
     <!---eBooks con descripcion----->
+    <!--Formulario para filtrar autor-->
+<div>
+  <form action="eBooks.php" method="POST"> 
+    <label for="fautor">Autor</label>
+      <input type="text" id="fautor" name="fautor" placeholder="Introduce el autor..">
+
+    <!-- <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+    <label for="country">Country</label>
+      <select id="country" name="country">
+        <option value="australia">Australia</option>
+        <option value="canada">Canada</option>
+        <option value="usa">USA</option>
+      </select> -->
+  
+    <input type="submit" value="Buscar">
+  </form>
+</div>
+<?php
+
+if(isset($_POST['fautor'])){
+  //Filtrará los eBooks que se mostrarán en la pagina
+}else{
+  //Mostrará todos los eBooks de la base de datos
+}
+?>
 
     <?php
     //1.La conexion de la base de datos
