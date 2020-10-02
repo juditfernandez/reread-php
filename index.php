@@ -37,7 +37,7 @@
   if (!empty($result) && mysqli_num_rows($result) > 0) {
       echo "<h2>Top Ventas</h2>";
       while ($row = mysqli_fetch_array($result)) {
-        echo "<div class= 'column right'>";
+        echo "<div style = 'margin-top: -30px;'class= 'column right'>";
         echo "<p>" .$row['Title']."</p>";
         echo "</div>";
      }

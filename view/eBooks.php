@@ -29,30 +29,72 @@
       
     <h3>Toda la actualidad en eBook</h3>
     <!---eBooks con descripcion----->
+    <!--Formulario para filtrar autor-->
+<div class="form">
+  <form action="eBooks.php" method="POST"> 
+    <label for="fautor">Autor</label>
+      <input type="text" id="fautor" name="fautor" placeholder="Introduce el autor..">
+
+      <!-- <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..">-->
+      
+      <label for="country">País</label>
+    <select id="country" name="country">
+        <option value="%">Todos los países</option>
+        <?php
+        include '../Service/connection.php';
+        $query="SELECT DISTINCT Authors.Country FROM Authors ORDER BY Country";
+        $result=mysqli_query($conn, $query);
+        while($row = mysqli_fetch_array($result)) {
+          echo '<option value="'.$row[Country].'">'.$row[Country].'</option>';
+        }
+
+        
+        ?>
+
+      </select> 
+  
+    <input type="submit" value="Buscar">
+  </form>
+</div>
+<?php
+if(isset($_POST['fautor'])){
+    //Filtrará los eBooks que se mostrarán en la pagina
+    $query= "SELECT Books.Description, Books.img, Books.Title 
+    FROM Books INNER JOIN BooksAuthors ON Id = BooksAuthors.BookId
+    INNER JOIN Authors ON Authors.Id = BooksAuthors.AuthorId
+    WHERE Authors.Name LIKE '%{$_POST['fautor']}%'
+    AND Authors.Country LIKE '%{$_POST['country']}%'";
+    $result = mysqli_query($conn, $query);
+}else{
+        $result = mysqli_query($conn, "SELECT Books.Description, Books.img, Books.Title FROM Books");
+    
+        //Mostrará todos los eBooks de la base de datos
+      }
+if (!empty($result) && mysqli_num_rows($result) > 0) {
+    $i=0;
+  while ($row = mysqli_fetch_array($result)) {
+    $i++;
+    echo "<div class= 'ebook'>";
+
+    echo "<img src=../img/".$row['img']." alt='".$row['Title']."'>";
+
+    echo "<div class= 'desc'>".$row['Description']."</div>";
+    echo "</div>";
+    if ($i%3==0) {
+      echo "<div style='clear:both;'></div>";
+    }
+  }
+}else{
+  echo " 0 resultados";
+}
+?>
 
     <?php
     //1.La conexion de la base de datos
-    include '../Service/connection.php';
 
     //2.Selecion y muestra de datos de la base de datos
-    $result = mysqli_query($conn, "SELECT Books.Description, Books.img, Books.Title FROM Books");
-    $i=0;
-    if (!empty($result) && mysqli_num_rows($result) > 0) {
-      $i++;
-     while ($row = mysqli_fetch_array($result)) {
-      echo "<div class= 'ebook'>";
-
-      echo "<img src=../img/".$row['img']." alt='".$row['Title']."'>";
-
-      echo "<div class= 'desc'>".$row['Description']."</div>";
-      echo "</div>";
-      if ($i%3==0) {
-        echo "<div style='clear:both;'></div>";
-      }
-    }
-  }else{
-    echo " 0 resultados";
-  }
+    
   ?>
     </div>
 
@@ -61,7 +103,7 @@
   if (!empty($result) && mysqli_num_rows($result) > 0) {
       echo "<h2>Top Ventas</h2>";
       while ($row = mysqli_fetch_array($result)) {
-       echo "<div class= 'column right'>";
+       echo "<div style = 'margin-top: -30px;' class= 'column right'>";
        echo "<p>" .$row['Title']."</p>";
        echo "</div>";
      }
