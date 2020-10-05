@@ -34,6 +34,8 @@
   <form action="eBooks.php" method="POST"> 
     <label for="fautor">Autor</label>
       <input type="text" id="fautor" name="fautor" placeholder="Introduce el autor..">
+      <label for="ftitulo">Título</label>
+      <input type="text" id="ftitulo" name="ftitulo" placeholder="Introduce el título..">
 
       <!-- <label for="lname">Last Name</label>
       <input type="text" id="lname" name="lastname" placeholder="Your last name..">-->
@@ -58,13 +60,13 @@
   </form>
 </div>
 <?php
-if(isset($_POST['fautor'])){
+if(isset($_POST['fautor']) || isset($_POST['ftitulo'])){
     //Filtrará los eBooks que se mostrarán en la pagina
     $query= "SELECT Books.Description, Books.img, Books.Title 
     FROM Books INNER JOIN BooksAuthors ON Id = BooksAuthors.BookId
     INNER JOIN Authors ON Authors.Id = BooksAuthors.AuthorId
     WHERE Authors.Name LIKE '%{$_POST['fautor']}%'
-    AND Authors.Country LIKE '%{$_POST['country']}%'";
+    AND Authors.Country LIKE '%{$_POST['country']}%' AND Books.title LIKE '%{$_POST['ftitulo']}%'";
     $result = mysqli_query($conn, $query);
 }else{
         $result = mysqli_query($conn, "SELECT Books.Description, Books.img, Books.Title FROM Books");
